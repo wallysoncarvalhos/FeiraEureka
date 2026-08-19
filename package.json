@@ -1,0 +1,12 @@
+{
+  "name": "braco-robotico-hyundai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "serve -p 3000 -s .",
+    "start": "serve -p 3000 -s ."
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}

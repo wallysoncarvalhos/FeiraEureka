@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projeto Robótico Industrial - Braço robótico automatizado inspirado nas linhas de produção da Hyundai. Feira de Ciências." />
+  <meta name="theme-color" content="#00BFFF" />
+  <title>Braço Robótico Industrial | Automação Inteligente</title>
+
+  <!-- Fonte / Ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- AOS (animações ao rolar) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =================== TELA DE BOOT (inicialização do sistema) =================== -->
+  <div id="boot-screen" class="boot-screen" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-logo"><i class="fa-solid fa-microchip"></i></div>
+      <h1 class="boot-title">WA ROBOTICS</h1>
+      <div class="boot-bar"><span id="boot-bar-fill"></span></div>
+      <div id="boot-log" class="boot-log"></div>
+    </div>
+  </div>
+
+  <!-- =================== CURSOR PERSONALIZADO =================== -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- =================== FUNDO ANIMADO (partículas) =================== -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- =================== BARRA DE PROGRESSO DE ROLAGEM =================== -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- =================== MENU / NAVEGAÇÃO FIXA =================== -->
+  <header class="navbar" id="navbar">
+    <a href="#inicio" class="nav-brand">
+      <i class="fa-solid fa-robot"></i>
+      <span>WA<b>ROBOTICS</b></span>
+    </a>
+
+    <nav class="nav-links" id="nav-links" aria-label="Navegação principal">
+      <a href="#inicio"><i class="fa-solid fa-house"></i> Início</a>
+      <a href="#projeto"><i class="fa-solid fa-robot"></i> Projeto</a>
+      <a href="#tecnologia"><i class="fa-solid fa-microchip"></i> Tecnologia</a>
+      <a href="#funcionamento"><i class="fa-solid fa-gears"></i> Funcionamento</a>
+      <a href="#braco"><i class="fa-solid fa-hand"></i> Braço</a>
+      <a href="#galeria"><i class="fa-solid fa-camera"></i> Galeria</a>
+      <a href="#equipe"><i class="fa-solid fa-users"></i> Desenvolvedor</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="theme-toggle" class="icon-btn" title="Alternar tema claro/escuro" aria-label="Alternar tema">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button id="menu-toggle" class="icon-btn menu-toggle" title="Menu" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =================== 1. INÍCIO / HERO =================== -->
+    <section id="inicio" class="hero">
+      <div class="hero-bg" id="hero-parallax">
+        <img src="projeto-completo.jpeg" alt="Estação de trabalho completa do projeto de braço robótico industrial" />
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge"><span class="pulse-dot"></span> Sistema Operacional • Online</div>
+        <h1 class="hero-title">Braço Robótico <span class="glow-text">Industrial</span></h1>
+        <p class="hero-subtitle">Automação inteligente inspirada na indústria automotiva</p>
+        <div class="hero-buttons">
+          <a href="#projeto" class="btn btn-primary"><i class="fa-solid fa-play"></i> Explorar Projeto</a>
+          <a href="#simulacao" class="btn btn-ghost"><i class="fa-solid fa-video"></i> Ver Demonstração</a>
+        </div>
+      </div>
+
+      <a href="#projeto" class="scroll-hint" aria-label="Rolar para baixo">
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+    </section>
+
+    <!-- =================== 2. SOBRE O PROJETO =================== -->
+    <section id="projeto" class="section">
+      <div class="section-head" data-aos="fade-up">
+        <span class="section-tag">// 01 — O Projeto</span>
+        <h2 class="section-title">Sobre o <span class="glow-text">Projeto</span></h2>
+        <p class="section-desc">
+          Este projeto apresenta um braço robótico capaz de transportar pequenas peças entre diferentes áreas da estação de trabalho. O sistema é controlado por um painel eletrônico com display LCD e botões, simulando uma etapa de uma linha de produção industrial.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="0">
+          <i class="fa-solid fa-bullseye card-icon"></i>
+          <h3>Objetivo</h3>
+          <p>Mostrar, de forma prática, como a robótica pode automatizar tarefas repetitivas com precisão e baixo custo.</p>
+        </article>
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="80">
+          <i class="fa-solid fa-industry card-icon"></i>
+          <h3>Aplicações</h3>
+          <p>A robótica pode ser utilizada em linhas de montagem, separação de peças, movimentação de materiais e diversas outras tarefas industriais.</p>
+        </article>
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="160">
+          <i class="fa-solid fa-circle-check card-icon"></i>
+          <h3>Benefícios</h3>
+          <p>Maior produtividade, redução de erros, movimentos mais precisos e mais segurança durante as operações.</p>
+        </article>
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="240">
+          <i class="fa-solid fa-triangle-exclamation card-icon"></i>
+          <h3>Desafios</h3>
+          <p>Durante o desenvolvimento, alguns dos principais desafios foram calibrar os servomotores, estabilizar a estrutura de MDF e sincronizar corretamente os movimentos do braço.</p>
+        </article>
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="320">
+          <i class="fa-solid fa-diagram-project card-icon"></i>
+          <h3>Desenvolvimento</h3>
+          <p>O desenvolvimento envolveu o planejamento do projeto, corte e montagem das peças, instalação dos componentes eletrônicos e programação do sistema em Arduino.</p>
+        </article>
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="400">
+          <i class="fa-solid fa-leaf card-icon"></i>
+          <h3>Sustentabilidade</h3>
+          <p>A estrutura utiliza MDF e componentes eletrônicos que podem ser reaproveitados em outros projetos, contribuindo para o uso consciente dos materiais.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projeto" class="section">
+      <div class="section-head" data-aos="fade-up">
+    <span class="section-tag">// 02</span>
+        <h2 class="section-title">Tecnologias <span class="glow-text">utilizadas</span></h2>
+    <div class="tech-grid">
+ <article class="glass-card tech-card" data-aos="fade-up">
+    <div class="tech-icon">
+      <img src="arduino-uno.jpeg" alt="Arduino Uno">
+    </div>
+    <div class="tech-content">
+      <h3>Arduino Uno</h3>
+      <p>
+        Controla todo o sistema e executa a programação responsável
+        pelo funcionamento do projeto.
+      </p>
+    </div>
+  </article>
+
+  <article class="glass-card tech-card" data-aos="fade-up" data-aos-delay="80">
+    <div class="tech-icon">
+      <img src="servomotor.jpeg" alt="Servomotor">
+    </div>
+    <div class="tech-content">
+      <h3>4 Servomotores</h3>
+      <p>
+        Permitem realizar os movimentos do braço robótico,
+        controlando suas diferentes articulações.
+      </p>
+    </div>
+  </article>
+
+  <article class="glass-card tech-card" data-aos="fade-up" data-aos-delay="160">
+    <div class="tech-icon">
+      <img src="sensor-ultrassonico.jpeg" alt="Sensor ultrassônico">
+    </div>
+    <div class="tech-content">
+      <h3>Sensor Ultrassônico</h3>
+      <p>
+        Detecta a presença e a distância de objetos,
+        auxiliando no controle da operação.
+      </p>
+    </div>
+  </article>
+
+  <article class="glass-card tech-card" data-aos="fade-up" data-aos-delay="240">
+    <div class="tech-icon">
+      <img src="leds.jpeg" alt="LEDs">
+    </div>
+    <div class="tech-content">
+      <h3>2 LEDs</h3>
+      <p>
+        Indicam diferentes estados do sistema,
+        facilitando o acompanhamento da operação.
+      </p>
+    </div>
+  </article>
+
+  <article class="glass-card tech-card" data-aos="fade-up" data-aos-delay="320">
+    <div class="tech-icon">
+      <img src="lcd-i2c.jpeg" alt="Display LCD I2C">
+    </div>
+    <div class="tech-content">
+      <h3>Display LCD I2C</h3>
+      <p>
+        Exibe informações, mensagens e o status da operação
+        durante o funcionamento do sistema.
+      </p>
+    </div>
+  </article>
+
+  <article class="glass-card tech-card" data-aos="fade-up" data-aos-delay="400">
+    <div class="tech-icon">
+      <img src="programacao-arduino.jpeg" alt="Programação Arduino">
+    </div>
+    <div class="tech-content">
+      <h3>Programação Arduino</h3>
+      <p>
+        Define a lógica de funcionamento, os comandos e
+        os movimentos realizados pelo braço robótico.
+      </p>
+    </div>
+  </article>
+
+</div>
+
+    <!-- =================== 3. FUNCIONAMENTO =================== -->
+    <section id="funcionamento" class="section section-alt">
+      <div class="section-head" data-aos="fade-up">
+        <span class="section-tag">// 02 — Fluxo</span>
+        <h2 class="section-title">Como <span class="glow-text">Funciona</span></h2>
+        <p class="section-desc">O funcionamento do sistema acontece em quatro etapas, desde a coleta da peça até o seu posicionamento na área de trabalho.</p>
+      </div>
+
+      <div class="flow" data-aos="fade-up">
+        <div class="flow-step" data-step="caixa">
+          <div class="flow-image">
+    <img src="caixa-pecas.jpeg" alt="Caixa de peças">
+</div>
+          <h3>Caixa de Peças</h3>
+          <p>Local onde a peça é colocada após ser transportada pelo braço.</p>
+        </div>
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+        <div class="flow-step" data-step="braco">
+          <div class="flow-image">
+    <img src="braco-robotico.jpeg" alt="Braço robótico">
+</div>
+          <h3>Braço Robótico</h3>
+          <p>O braço coleta a peça e a movimenta até o local determinado.</p>
+        </div>
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+        <div class="flow-step" data-step="area">
+          <div class="flow-image">
+    <img src="area-trabalho.jpeg" alt="Área de trabalho">
+</div>
+          <h3>Área de Trabalho</h3>
+          <p>Local onde as peças ficam antes de serem coletadas pelo braço robótico.</p>
+        </div>
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+        <div class="flow-step" data-step="painel">
+          <div class="flow-image">
+    <img src="painel-controle.jpeg" alt="Painel de controle">
+</div>
+          <h3>Painel de Controle</h3>
+          <p>Permite controlar o sistema e acompanhar suas informações por meio do display LCD e dos botões.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== 4. BRAÇO ROBÓTICO (hotspots) =================== -->
+    <section id="braco" class="section">
+      <div class="section-head" data-aos="fade-up">
+        <span class="section-tag">// 03 — Equipamento</span>
+        <h2 class="section-title">O <span class="glow-text">Braço Robótico</span></h2>
+        <p class="section-desc">Conheça os principais componentes do protótipo. Clique nos pontos da imagem para descobrir como cada parte funciona.</p>
+      </div>
+
+      <div class="arm-wrap" data-aos="zoom-in">
+        <div class="arm-frame" id="arm-frame">
+          <img src="braco-robotico.jpeg" alt="Braço robótico em MDF com servomotores e garra" id="arm-image" />
+
+          <!-- Hotspots interativos -->
+          <button class="hotspot" style="top:78%; left:31%" data-title="Base Rotativa" data-info="Permite que o braço gire horizontalmente, aumentando sua área de alcance.">1</button>
+          <button class="hotspot" style="top:63%; left:37%" data-title="Servo Motor da Base" data-info="Servomotor SG90 azul responsável pela rotação da base do braço.">2</button>
+          <button class="hotspot" style="top:38%; left:46%" data-title="Braço Principal" data-info="Estrutura de MDF responsável por sustentar as articulações e transmitir os movimentos do braço.">3</button>
+          <button class="hotspot" style="top:30%; left:57%" data-title="Articulação" data-info="Junta móvel que permite movimentar e dobrar o braço, acionada por um servomotor.">4</button>
+          <button class="hotspot" style="top:66%; left:66%" data-title="Garra Robótica" data-info="Mecanismo com elásticos que abre e fecha para segurar as peças.">5</button>
+          <button class="hotspot" style="top:52%; left:52%" data-title="Cabos e Fiação" data-info="Conjunto de fios responsáveis pela alimentação e pelos sinais de controle dos servomotores.">6</button>
+          <button class="hotspot" style="top:74%; left:78%" data-title="Área de Coleta" data-info="Ponto onde a garra captura a peça na área de trabalho.">7</button>
+        </div>
+
+        <div class="arm-info glass-card" id="arm-info" data-aos="fade-left">
+          <span class="arm-info-tag">Componente selecionado</span>
+          <h3 id="arm-info-title">Toque em um ponto</h3>
+          <p id="arm-info-text">Passe o mouse sobre a imagem para o efeito 3D e clique nos números para ver a função de cada parte do braço.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== 5. SIMULAÇÃO =================== -->
+    <section id="simulacao" class="section section-alt">
+      <div class="section-head" data-aos="fade-up">
+        <span class="section-tag">// 04 — Demonstração</span>
+        <h2 class="section-title">Simulação de <span class="glow-text">Operação</span></h2>
+        <p class="section-desc">Veja uma simulação do braço robótico realizando o ciclo de movimentação de uma peça.</p>
+      </div>
+
+      <div class="sim-layout" data-aos="fade-up">
+        <div class="sim-stage">
+          <svg id="sim-svg" viewBox="0 0 500 340" role="img" aria-label="Animação do braço robótico">
+            <!-- solo -->
+            <line x1="0" y1="300" x2="500" y2="300" class="sim-ground" />
+            <!-- caixa origem -->
+            <rect x="40" y="255" width="70" height="45" rx="4" class="sim-box" />
+            <text x="75" y="325" class="sim-label" text-anchor="middle">Área de trabalho</text>
+            <!-- destino -->
+            <rect x="390" y="255" width="70" height="45" rx="4" class="sim-box" />
+            <text x="425" y="325" class="sim-label" text-anchor="middle">Caixa de peças</text>
+            <!-- base -->
+            <rect x="230" y="285" width="40" height="15" rx="3" class="sim-base" />
+            <!-- braço (segmentos) -->
+            <g id="sim-arm">
+              <line id="seg1" x1="250" y1="285" x2="250" y2="200" class="sim-seg" />
+              <line id="seg2" x1="250" y1="200" x2="250" y2="130" class="sim-seg" />
+              <circle id="gripper" cx="250" cy="130" r="9" class="sim-gripper" />
+              <rect id="payload" x="242" y="140" width="16" height="16" rx="3" class="sim-payload" style="opacity:0" />
+            </g>
+          </svg>
+          <div class="sim-status" id="sim-status">Aguardando início...</div>
+        </div>
+
+        <div class="sim-controls">
+          <button class="btn btn-primary" id="sim-start"><i class="fa-solid fa-play"></i> Iniciar</button>
+          <button class="btn btn-ghost" id="sim-pause"><i class="fa-solid fa-pause"></i> Pausar</button>
+          <button class="btn btn-ghost" id="sim-reset"><i class="fa-solid fa-rotate"></i> Reiniciar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== 6. GALERIA =================== -->
+    <section id="galeria" class="section">
+      <div class="section-head" data-aos="fade-up">
+        <span class="section-tag">// 07 — Registros</span>
+        <h2 class="section-title"><span class="glow-text">Galeria</span></h2>
+        <p class="section-desc">Confira alguns registros do protótipo durante o desenvolvimento e a preparação para a apresentação.</p>
+      </div>
+
+      <div class="gallery-filters" data-aos="fade-up">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="estacao">Estação</button>
+        <button class="filter-btn" data-filter="braco">Braço</button>
+      </div>
+
+      <div class="gallery" data-aos="fade-up">
+        <figure class="gallery-item" data-cat="estacao">
+          <img src="projeto-completo.jpeg" alt="Estação completa com caixa de peças, braço e painel de controle" />
+          <figcaption>Estação de trabalho completa</figcaption>
+        </figure>
+        <figure class="gallery-item" data-cat="braco">
+          <img src="braco-robotico.jpeg" alt="Detalhe do braço robótico e da garra" />
+          <figcaption>Braço robótico</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- =================== 7. EQUIPE =================== -->
+    <section id="equipe" class="section section-alt">
+      <div class="section-head" data-aos="fade-up">
+        <span class="section-tag">// 07 — Time</span>
+        <h2 class="section-title">Desenvolvido <span class="glow-text">Por</span></h2>
+      </div>
+      <div class="team team-single" data-aos="fade-up">
+        <div class="member">
+          <div class="member-avatar">
+  <img src="wallysonhyundai.jpeg" alt="Wallyson Silva">
+</div>
+          <h3>Wallyson Silva</h3>
+          <span class="member-role">Idealizador e Desenvolvedor</span>
+          <p>Responsável pelo planejamento, montagem, programação e apresentação do projeto.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Projeto Robótico Industrial • Inspirado nas linhas de produção</p>
+    <p class="footer-sub">Desenvolvido para a Feira da Hyundai</p>
+  </footer>
+
+  <!-- Botão voltar ao topo -->
+  <button id="to-top" class="to-top" aria-label="Voltar ao topo"><i class="fa-solid fa-chevron-up"></i></button>
+
+
+  <!-- =================== LIGHTBOX GALERIA =================== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="Imagem ampliada" id="lightbox-img" />
+  </div>
+
+  <!-- Bibliotecas -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
